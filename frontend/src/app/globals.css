@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fcfbf9;
+  --foreground: #2c2926;
+  --gold: #c5a059;
+  --gold-light: #e2c286;
+  --gold-dark: #8e7037;
+  --gold-soft: #f8f1e4;
+  --peacock: #2b7a78;
+  --peacock-light: #3aafa9;
+  --glass: rgba(252, 251, 249, 0.85);
+  --glass-border: rgba(197, 160, 89, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-soft: var(--gold-soft);
+  --color-peacock: var(--peacock);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-playfair);
+}
+
+/* ── Base ── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.font-serif {
+  font-family: var(--font-playfair), serif;
+}
+
+/* ── Hero Carousel ── */
+@keyframes hero-slide {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+
+  8% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+
+  38% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.hero-slide:nth-child(1) {
+  animation: hero-slide 15s 0s infinite ease-in-out;
+}
+
+.hero-slide:nth-child(2) {
+  animation: hero-slide 15s 5s infinite ease-in-out;
+}
+
+.hero-slide:nth-child(3) {
+  animation: hero-slide 15s 10s infinite ease-in-out;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(44, 41, 38, 0.15) 0%,
+      rgba(44, 41, 38, 0.50) 60%,
+      rgba(44, 41, 38, 0.85) 100%);
+  z-index: 1;
+}
+
+/* ── Slide-up fade-in ── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.8s ease-out both;
+}
+
+.fade-up-d1 {
+  animation-delay: 0.15s;
+}
+
+.fade-up-d2 {
+  animation-delay: 0.3s;
+}
+
+.fade-up-d3 {
+  animation-delay: 0.45s;
+}
+
+.fade-up-d4 {
+  animation-delay: 0.6s;
+}
+
+/* ── Utilities ── */
+.gold-gradient {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(to right, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.gold-shadow {
+  box-shadow: 0 20px 50px rgba(142, 112, 55, 0.12);
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ── Buttons ── */
+.btn-gold {
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  background: var(--gold);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.35);
+}
+
+.btn-gold:hover {
+  background: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(142, 112, 55, 0.4);
+}
+
+.btn-outline-gold {
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  background: transparent;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid var(--gold);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: white;
+}
+
+.btn-dark {
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  background: var(--foreground);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.btn-dark:hover {
+  background: var(--gold);
+  letter-spacing: 0.5em;
+}
+
+/* ── Cards ── */
+.trust-card {
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--glass-border);
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-align: center;
+}
+
+.trust-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(142, 112, 55, 0.08);
+}
+
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--glass-border);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.product-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 24px 50px rgba(142, 112, 55, 0.12);
+  transform: translateY(-4px);
+}
+
+/* ── Verified badge ── */
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  background-color: rgba(43, 122, 120, 0.08);
+  color: var(--peacock);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 9999px;
+  border: 1px solid rgba(43, 122, 120, 0.15);
+}
+
+/* ── Decorative ── */
+.section-line {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+  margin: 0 auto;
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 5s ease-in-out infinite;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
